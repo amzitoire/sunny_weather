@@ -3,7 +3,7 @@
 $first_name = Amadou
 $last_name = SALL
 $mail = Amzidou16@gmail.com 
-
+$git = [git](https://github.com/amzitoire/sunny_weather.git)
 #run 
 
 Only runnable on mobile 

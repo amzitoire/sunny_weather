@@ -78,8 +78,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          _weatherMiniWidget(context,CupertinoIcons.sunrise, "SUNRISE", Icons.wb_sunny_outlined,DateFormat("HH:mm").format(meteo.sunrise!)),
-                          _weatherMiniWidget(context,CupertinoIcons.sunset, "SUNSET", CupertinoIcons.moon,DateFormat("HH:mm").format(meteo.sunset!)),
+                          _weatherMiniWidget(context,CupertinoIcons.sunrise, "SUNRISE", Icons.wb_sunny_outlined,DateFormat("HH:mm").format(meteo.sunrise!.add(Duration(seconds: _ville.timeOffset)))),
+                          _weatherMiniWidget(context,CupertinoIcons.sunset, "SUNSET", CupertinoIcons.moon,DateFormat("HH:mm").format(meteo.sunset!.add(Duration(seconds: _ville.timeOffset)))),
                         ],
                       ),
                     ),
