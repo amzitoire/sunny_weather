@@ -1,3 +1,14 @@
+#dev
+
+$first_name = Amadou
+$last_name = SALL
+$mail = Amzidou16@gmail.com 
+
+#run 
+
+Only runnable on mobile 
+cmd : flutter run --no-sound-null-safety
+
 # sunny_weather
 
 A new Flutter project.

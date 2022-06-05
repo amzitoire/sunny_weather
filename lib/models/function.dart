@@ -1,97 +1,128 @@
 import 'package:intl/intl.dart';
+import 'package:weather/weather.dart';
 
-class GetJson{
-  Map<String,dynamic> json ;
+class GetJson {
+  Map<String, dynamic> json;
 
   GetJson(this.json);
 
-  dailyJson(){
+  dailyJson() {
     return json['daily'];
   }
-  hourlyJson(){
-    return  json['hourly'];
+
+  hourlyJson() {
+    return json['hourly'];
   }
 }
 
-getCurrentTime(String hour, int weekday ,int month ,int day){
-  var weekday1 = 1 == weekday ? "Monday"
+getCurrentTime(String hour, int weekday, int month, int day) {
+  var weekday1 = 1 == weekday
+      ? "Monday"
       : weekday == 2
-      ? "Tuesday"
-      : weekday == 3
-      ? "Wednesday"
-      : weekday == 4
-      ? "Thursday"
-      : weekday == 5
-      ?  "Friday"
-      : weekday == 6
-      ? "Saturday" : "Sunday";
+          ? "Tuesday"
+          : weekday == 3
+              ? "Wednesday"
+              : weekday == 4
+                  ? "Thursday"
+                  : weekday == 5
+                      ? "Friday"
+                      : weekday == 6
+                          ? "Saturday"
+                          : "Sunday";
 
-  var month1 = 1 == month ? "JAN"
+  var month1 = 1 == month
+      ? "JAN"
       : month == 2
-      ? "FEB"
-      : month == 3
-      ? "MARS"
-      : month == 4
-      ? "APRIL"
-      : month== 5
-      ? "MAY"
-      : month == 6
-      ? "JUNE"
-      : month == 7
-      ? "JULY"
-      : month == 8
-      ? "AUG"
-      : month == 9
-      ? "SEPT"
-      : month == 10
-      ? "OCT"
-      : month == 11
-      ? "NOV" : "DEC";
+          ? "FEB"
+          : month == 3
+              ? "MARS"
+              : month == 4
+                  ? "APRIL"
+                  : month == 5
+                      ? "MAY"
+                      : month == 6
+                          ? "JUNE"
+                          : month == 7
+                              ? "JULY"
+                              : month == 8
+                                  ? "AUG"
+                                  : month == 9
+                                      ? "SEPT"
+                                      : month == 10
+                                          ? "OCT"
+                                          : month == 11
+                                              ? "NOV"
+                                              : "DEC";
 
-
-  var currentTime = weekday1+','+day.toString()+' '+month1+', '+hour.toString()+':'+DateFormat("mm").format(DateTime.now()).toString();
-  return currentTime;
-}
-getdailyTime(int weekday ,int month ,int day){
-  var weekday1 = 1 == weekday ? "Monday"
-      : weekday == 2
-      ? "Tuesday"
-      : weekday == 3
-      ? "Wednesday"
-      : weekday == 4
-      ? "Thursday"
-      : weekday == 5
-      ?  "Friday"
-      : weekday == 6
-      ? "Saturday" : "Sunday";
-
-  var month1 = 1 == month ? "JAN"
-      : month == 2
-      ? "FEB"
-      : month == 3
-      ? "MARS"
-      : month == 4
-      ? "APRIL"
-      : month== 5
-      ? "MAY"
-      : month == 6
-      ? "JUNE"
-      : month == 7
-      ? "JULY"
-      : month == 8
-      ? "AUG"
-      : month == 9
-      ? "SEPT"
-      : month == 10
-      ? "OCT"
-      : month == 11
-      ? "NOV" : "DEC";
-
-  var currentTime = weekday1+', '+day.toString()+' '+month1;
+  var currentTime = weekday1 +
+      ',' +
+      day.toString() +
+      ' ' +
+      month1 +
+      ', ' +
+      hour.toString() +
+      ':' +
+      DateFormat("mm").format(DateTime.now()).toString();
   return currentTime;
 }
 
-getCloudCover(int cloudCover){
+getdailyTime(int weekday, int month, int day ,int hour) {
+  var weekday1 = 1 == weekday
+      ? "Monday"
+      : weekday == 2
+          ? "Tuesday"
+          : weekday == 3
+              ? "Wednesday"
+              : weekday == 4
+                  ? "Thursday"
+                  : weekday == 5
+                      ? "Friday"
+                      : weekday == 6
+                          ? "Saturday"
+                          : "Sunday";
+
+  var month1 = 1 == month
+      ? "JAN"
+      : month == 2
+          ? "FEB"
+          : month == 3
+              ? "MARS"
+              : month == 4
+                  ? "APRIL"
+                  : month == 5
+                      ? "MAY"
+                      : month == 6
+                          ? "JUNE"
+                          : month == 7
+                              ? "JULY"
+                              : month == 8
+                                  ? "AUG"
+                                  : month == 9
+                                      ? "SEPT"
+                                      : month == 10
+                                          ? "OCT"
+                                          : month == 11
+                                              ? "NOV"
+                                              : "DEC";
+
+  var currentTime = weekday1 + ', ' + day.toString() + ' ' + month1 +'\n at ' + hour.toString() + ' h' ;
+  return currentTime;
+}
+
+getPrevision(List<Weather> listWeather){
+  List<Weather> glistWeather =[];
+
+  for(int index=0 ;index<listWeather.length-1;index++){
+
+    if(listWeather[index].date!.day != listWeather[index+1].date!.day){
+      glistWeather.add(listWeather[index]);
+    }
+  }
+
+  return glistWeather;
+}
+
+getCloudCover(int cloudCover) {
   /*
   *
   * 	Clear sky
@@ -110,48 +141,57 @@ getCloudCover(int cloudCover){
   *
   * */
 
-  var cloudcover  = 0 == cloudCover ? "clear sky"
+  var cloudcover = 0 == cloudCover
+      ? "clear sky"
       : cloudCover == 1
-      ? "mainly clear"
-      : cloudCover == 2
-      ? "partly cloudy"
-      : cloudCover >= 3 && cloudCover <= 44
-      ? "overcast"
-      : cloudCover >= 45 && cloudCover <= 47
-      ? "fog"
-      : cloudCover >= 48 && cloudCover <= 50
-      ? "depositing rime fog"
-      : cloudCover >= 51 && cloudCover <= 60
-      ? "drizzle"
-      : cloudCover >= 61 && cloudCover <= 70
-      ? "rain"
-      : cloudCover >= 71 && cloudCover <= 79
-      ? "rainy cloudy"
-      :cloudCover >= 80 && cloudCover <= 84
-      ? "rain showers"
-      :cloudCover >= 85 && cloudCover <= 94
-      ? "showers"
-      :cloudCover >= 95
-      ? "largely cloudy"
-      :cloudCover >= 100
-      ? "Cloudy"
-      : "no data avalaible";
+          ? "mainly clear"
+          : cloudCover == 2
+              ? "partly cloudy"
+              : cloudCover >= 3 && cloudCover <= 44
+                  ? "overcast"
+                  : cloudCover >= 45 && cloudCover <= 47
+                      ? "fog"
+                      : cloudCover >= 48 && cloudCover <= 50
+                          ? "depositing rime fog"
+                          : cloudCover >= 51 && cloudCover <= 60
+                              ? "drizzle"
+                              : cloudCover >= 61 && cloudCover <= 70
+                                  ? "rain"
+                                  : cloudCover >= 71 && cloudCover <= 79
+                                      ? "rainy cloudy"
+                                      : cloudCover >= 80 && cloudCover <= 84
+                                          ? "rain showers"
+                                          : cloudCover >= 85 && cloudCover <= 94
+                                              ? "showers"
+                                              : cloudCover >= 95
+                                                  ? "largely cloudy"
+                                                  : cloudCover >= 100
+                                                      ? "Cloudy"
+                                                      : "no data avalaible";
   return cloudcover;
 }
 
-getWeekday(int weekday){
-  weekday++ ;
-  var weekday1 = 1 == weekday ? "Monday"
+getWeekday(int weekday) {
+  weekday++;
+  var weekday1 = 1 == weekday
+      ? "Monday"
       : weekday == 2
-      ? "Tuesday"
-      : weekday == 3
-      ? "Wednesday"
-      : weekday == 4
-      ? "Thursday"
-      : weekday == 5
-      ?  "Friday"
-      : weekday == 6
-      ? "Saturday" : "Sunday";
+          ? "Tuesday"
+          : weekday == 3
+              ? "Wednesday"
+              : weekday == 4
+                  ? "Thursday"
+                  : weekday == 5
+                      ? "Friday"
+                      : weekday == 6
+                          ? "Saturday"
+                          : "Sunday";
   return weekday1;
-
 }
+
+getWeatherFactory(){
+  WeatherFactory wf = WeatherFactory("8d1bad42d4f729ec282bd29644edbcba");
+  return wf;
+}
+
+

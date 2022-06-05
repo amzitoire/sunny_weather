@@ -5,11 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:sunny_weather/screens/details.dart';
 
-import 'models/meteo.dart';
 import 'screens/home.dart';
-
 
 void main() => runApp(const MyApp());
 
@@ -28,16 +25,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      debugShowCheckedModeBanner:false,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:  SplashScreen(
+      home: SplashScreen(
         seconds: 3,
-        navigateAfterSeconds:MaterialApp.router(
+        navigateAfterSeconds: MaterialApp.router(
           title: title,
-          debugShowCheckedModeBanner:false,
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -51,28 +48,7 @@ class MyApp extends StatelessWidget {
         styleTextUnderTheLoader: const TextStyle(),
         loaderColor: Colors.blue,
       ),
-
     );
   }
 }
 
-/* @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: title,
-        debugShowCheckedModeBanner:false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: SplashScreen(
-            seconds: 3,
-            navigateAfterSeconds:const MyHomePage(title: 'Sunny Weather'),
-            image: Image.asset('assets/images/sunny_weather_logo.bmp'),
-            photoSize: 175,
-            backgroundColor: Colors.white,
-            styleTextUnderTheLoader: const TextStyle(),
-            loaderColor: Colors.blue,
-        )
-    );
-  }*/
